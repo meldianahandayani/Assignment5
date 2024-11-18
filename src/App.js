@@ -4,7 +4,7 @@ function App() {
   const [exchangeRates, setExchangeRates] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const API_KEY = 'ca753d75269644ea813e2fe9e6e92938'; // Ganti dengan API Key Anda
+  const API_KEY = 'ca753d75269644ea813e2fe9e6e92938'; 
 
   useEffect(() => {
     // Fetch data dari CurrencyFreaks API
@@ -16,14 +16,14 @@ function App() {
         // Mata uang yang ingin diproses
         const selectedCurrencies = ['CAD', 'IDR', 'JPY', 'CHF', 'EUR', 'GBP'];
 
-        // Filter data berdasarkan mata uang yang dipilih
+        // Filter data
         const rates = Object.entries(data.rates)
           .filter(([currency]) => selectedCurrencies.includes(currency))
           .map(([currency, rate]) => ({
             currency,
             exchangeRate: parseFloat(rate), // Convert ke float
-            weBuy: parseFloat(rate) * 1.05, // Tambahkan 5%
-            weSell: parseFloat(rate) * 0.95, // Kurangi 5%
+            weBuy: parseFloat(rate) * 1.05, // Tambah 5%
+            weSell: parseFloat(rate) * 0.95, // Kurang 5%
           }));
 
         setExchangeRates(rates);
