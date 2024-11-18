@@ -4,13 +4,14 @@ function App() {
   const [exchangeRates, setExchangeRates] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const API_KEY = 'ca753d75269644ea813e2fe9e6e92938'; 
+  const API_URL = process.env.REACT_APP_API_URL;
+  const API_KEY = process.env.REACT_APP_API_KEY;
 
   useEffect(() => {
     // Fetch data dari CurrencyFreaks API
     const fetchExchangeRates = async () => {
       try {
-        const response = await fetch(`https://api.currencyfreaks.com/latest?apikey=${API_KEY}`);
+        const response = await fetch(`${API_URL}?apikey=${API_KEY}`);
         const data = await response.json();
 
         // Mata uang yang ingin diproses
@@ -30,7 +31,6 @@ function App() {
         setLoading(false);
       } catch (error) {
         console.error('Error fetching exchange rates:', error);
-        setLoading(false);
       }
     };
 
